@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Audio Director / Audio Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding-bottom: 70px;
+        background-color: #0b0b0b;
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        margin: 0;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: #111;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid #222;
+      }
+      .header nav {
+        display: none;
+      }
+      .logo1 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #fff;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+      .logo1 img {
+        height: 28px;
+        width: 28px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+      .lang-switch {
+        display: flex;
+        gap: 4px;
+      }
+      .lang-switch button {
+        background: #222;
+        color: #fff;
+        border: 1px solid #444;
+        padding: 4px 8px;
+        font-size: 11px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+
+      .sound-hero {
+        padding: 30px 20px;
+        text-align: center;
+        background: #141414;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid #222;
+      }
+      .sound-hero h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 28px;
+        margin-bottom: 8px;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+      .sound-hero p {
+        font-size: 12px;
+        color: #aaa;
+        margin: 0;
+      }
+
+      .sound-work {
+        padding: 20px;
+      }
+      .sound-work h2 {
+        font-size: 16px;
+        font-family: "Oswald", sans-serif;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .sound-work-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .sound-work-item {
+        height: 180px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        background: #222;
+        border: 1px solid #222;
+        cursor: pointer;
+      }
+      .sound-work-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+      }
+      .sound-work-item img.active {
+        display: block;
+      }
+      .sound-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+      }
+      .sound-overlay p {
+        margin: 0;
+        font-weight: bold;
+        font-size: 14px;
+        font-family: "Oswald", sans-serif;
+      }
+
+      .sound-work-item.extra-show {
+        display: none;
+      }
+
+      .show-toggle {
+        width: 100%;
+        padding: 12px;
+        background: transparent;
+        color: #ff5722;
+        border: 1px solid #ff5722;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .other-shows {
+        margin-top: 30px;
+      }
+      .other-shows h3 {
+        font-family: "Oswald", sans-serif;
+        font-size: 16px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .show-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .show-row {
+        background: #141414;
+        padding: 12px 15px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #222;
+        cursor: pointer;
+      }
+      .show-row span {
+        font-size: 12px;
+        font-weight: 500;
+        max-width: 65%;
+        color: #ddd;
+      }
+      .show-row small {
+        font-size: 10px;
+        color: #ff5722;
+        background: rgba(255, 87, 34, 0.1);
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      /* LIGHTBOX STYLING */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+      }
+      .lightbox img {
+        max-width: 85%;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 4px;
+      }
+      .lightbox .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox .prev-btn {
+        left: 15px;
+      }
+      .lightbox .next-btn {
+        right: 15px;
+      }
+      .lightbox .close-lightbox {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #fff;
+        font-size: 32px;
+        cursor: pointer;
+      }
+
+      .footer {
+        padding: 30px 20px 20px 20px;
+        background: #0f0f0f;
+        border-top: 1px solid #222;
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+      .footer .footer-col {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      .footer h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        color: #fff;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+      .footer p {
+        margin: 0 0 15px 0;
+        line-height: 1.5;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+        width: 100%;
+      }
+      .action-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid #333;
+      }
+      .btn-email {
+        background: #ff5722;
+        color: #fff;
+        border-color: #ff5722;
+      }
+      .btn-call {
+        background: #161616;
+        color: #fff;
+      }
+
+      .footer-links-group {
+        border-top: 1px solid #222;
+      }
+      .footer-link-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid #222;
+        color: #fff;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      .footer-link-row::after {
+        content: "+";
+        color: #ff5722;
+        font-size: 18px;
+      }
+
+      .contact-info {
+        padding: 15px 0;
+        border-bottom: 1px solid #222;
+      }
+      .contact-info p {
+        margin: 6px 0;
+        font-size: 12px;
+        color: #aaa;
+      }
+      .social-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 0;
+        border-bottom: 1px solid #222;
+        color: #fff;
+        font-size: 12px;
+      }
+      .social-row i {
+        color: #fff;
+        font-size: 14px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding: 15px 0 10px 0;
+        font-size: 10px;
+        color: #666;
+        line-height: 1.4;
+        border-top: 1px solid #1a1a1a;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #111;
+        border-top: 1px solid #222;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+      }
+      .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #777;
+        font-size: 10px;
+        gap: 3px;
+      }
+      .mobile-bottom-nav a i {
+        font-size: 16px;
+      }
+      .mobile-bottom-nav a.active {
+        color: #ff5722;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html" class="logo1">
+        <img src="assets/lo.jpg" alt="Logo" /> HAU TRAN
+      </a>
+      <div class="lang-switch">
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('vi')">VI</button>
+      </div>
+    </header>
+
+    <section class="sound-hero">
+      <div class="sound-bg"></div>
+      <div class="wave">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <h1 id="soundTitle">AUDIO DIRECTOR / AUDIO ENGINEER</h1>
+      <p id="soundDesc">Live events. Studio recordings. Post-production.</p>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section class="sound-work">
+      <h2>FEATURED SHOWS</h2>
+
+      <div class="sound-work-grid" id="soundWorkGrid">
+        <div class="sound-work-item showcase-slider">
+          <img
+            src="assets/image/1. Vesak Liên Hợp Quốc 2025/2.png"
+            class="active"
+          />
+          <img src="assets/image/1. Vesak Liên Hợp Quốc 2025/4.jpg" />
+          <img
+            src="assets/image/1. Vesak Liên Hợp Quốc 2025/phu07437-17466296340211975867000.jpg"
+          />
+          <img src="assets/image/1. Vesak Liên Hợp Quốc 2025/3.png" />
+          <img src="assets/image/1. Vesak Liên Hợp Quốc 2025/1.png" />
+          <div class="sound-overlay"><p>Vesak Liên Hợp Quốc 2025</p></div>
+        </div>
+
+        <div class="sound-work-item showcase-slider">
+          <img
+            src="assets/image/2. Sound Healing Concert 2026/07E82560-D24B-4DC6-A290-BD4B47B7B992.png"
+            class="active"
+          />
+          <img src="assets/image/2. Sound Healing Concert 2026/IMG_2305.JPG" />
+          <img src="assets/image/2. Sound Healing Concert 2026/IMG_2307.JPG" />
+          <img src="assets/image/2. Sound Healing Concert 2026/IMG_2308.JPG" />
+          <img src="assets/image/2. Sound Healing Concert 2026/IMG_2309.JPG" />
+          <div class="sound-overlay"><p>Sound Healing Concert 2026</p></div>
+        </div>
+
+        <div class="sound-work-item showcase-slider">
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2310.JPG"
+            class="active"
+          />
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2311.JPG"
+          />
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2312.JPG"
+          />
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2313.JPG"
+          />
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2314.JPG"
+          />
+          <img
+            src="assets/image/3. HD Bank Lời Cho Tương Lai Concert/IMG_2315.JPG"
+          />
+          <div class="sound-overlay">
+            <p>HD Bank Lời Cho Tương Lai Concert</p>
+          </div>
+        </div>
+
+        <div class="sound-work-item showcase-slider">
+          <img
+            src="assets/image/4. Disney Concert/IMG_8455.JPG"
+            class="active"
+          />
+          <img src="assets/image/4. Disney Concert/IMG_8456.JPG" />
+          <img src="assets/image/4. Disney Concert/IMG_8457.JPG" />
+          <div class="sound-overlay"><p>Disney Concert</p></div>
+        </div>
+
+        <!-- Các show ẩn (Featured) -->
+        <div class="sound-work-item showcase-slider extra-show">
+          <img
+            src="assets/image/5. Hội Thuần Hội 2024/IMG_8498.JPG"
+            class="active"
+          />
+          <img src="assets/image/5. Hội Thuần Hội 2024/IMG_8501.JPG" />
+          <img src="assets/image/5. Hội Thuần Hội 2024/IMG_8502.JPG" />
+          <div class="sound-overlay"><p>Hội Thuần Hội 2024</p></div>
+        </div>
+
+        <div class="sound-work-item showcase-slider extra-show">
+          <img
+            src="assets/image/6. Ghibli Concert/IMG_8482.JPG"
+            class="active"
+          />
+          <img src="assets/image/6. Ghibli Concert/IMG_8483.JPG" />
+          <img src="assets/image/6. Ghibli Concert/IMG_8484.JPG" />
+          <img src="assets/image/6. Ghibli Concert/IMG_8485.JPG" />
+          <div class="sound-overlay"><p>Ghibli Concert</p></div>
+        </div>
+      </div>
+
+      <button id="showFeaturedBtn" class="show-toggle">
+        SHOW ALL (6 SHOWS)
+      </button>
+
+      <!-- OTHER SHOWS -->
+      <div class="other-shows">
+        <h3>Other Shows</h3>
+        <div class="show-list" id="otherShowList">
+          <div
+            class="show-row"
+            data-gallery="assets/image2/1. Dept Asia Tour - Live in Viet Nam 2024/IMG_8371.JPG,assets/image2/1. Dept Asia Tour - Live in Viet Nam 2024/IMG_8372.JPG"
+          >
+            <span>Dept Asia Tour - Live in Viet Nam 2024</span
+            ><small>Live Sound</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/2. Đại nhạc hội Shopee Food/1.png"
+          >
+            <span>Đại nhạc hội Shopee Food</span><small>Festival</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/3. Anika Nilles World Tour in Viet Nam 2024/IMG_8397.JPG"
+          >
+            <span>Anika Nilles World Tour in Viet Nam 2024</span
+            ><small>World Tour</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/4. Grammy Award Winner Sangeeta Kaur/IMG_8494.JPG"
+          >
+            <span>Grammy Award Winner Sangeeta Kaur</span
+            ><small>Special Event</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/5. Ichika Nito World Tour in Vietnam 2023/IMG_8400.JPG"
+          >
+            <span>Ichika Nito World Tour in Vietnam 2023</span
+            ><small>Special Event</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/6. New Hope Club live in Vietnam 2022/IMG_8412.JPG"
+          >
+            <span>New Hope Club live in Vietnam 2022</span
+            ><small>Live Show</small>
+          </div>
+
+          <div
+            class="show-row"
+            data-gallery="assets/image2/7. +84 Showcase 2024/IMG_8366.JPG"
+          >
+            <span>+84 Showcase 2024</span><small>Live Sound</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/8 The Theatre - Rock Concert/IMG_8389.JPG"
+          >
+            <span>The Theatre - Rock Concert</span><small>Rock Concert</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/9. A Tale Of Two Christmas/IMG_8458.JPG"
+          >
+            <span>A Tale Of Two Christmas</span><small>Live Sound</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8486.JPG">
+            <span>Biển Của Hy Vọng 2022</span><small>Live Sound</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/Chopin Concerto No.2 - Bich Tra Nguyen & Tran Nhat Minh/IMG_8591.JPG"
+          >
+            <span>Chopin Concerto No.2</span><small>Orchestra</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/Christmas Crescendo  Concert 2022/IMG_8526.JPG"
+          >
+            <span>Christmas Crescendo Concert 2022</span><small>Concert</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/CROSSROADS THE UNTOLD STORIES/IMG_8460.JPG"
+          >
+            <span>CROSSROADS THE UNTOLD STORIES</span><small>Live Show</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/DOC MusicShow 2024/IMG_8570.JPG"
+          >
+            <span>DOC MusicShow 2024</span><small>Music Show</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8491.JPG">
+            <span>Game Show Người Yêu Tôi Đỉnh Nhất 2024</span
+            ><small>Game Show</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/Grand Opus Piano Competition GOPC 2023/IMG_8362.JPG"
+          >
+            <span>Grand Opus Piano Competition GOPC 2023</span
+            ><small>Special Event</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/Grand Opus Piano Competition GOPC 2024/IMG_8359.JPG"
+          >
+            <span>Grand Opus Piano Competition GOPC 2024</span
+            ><small>Special Event</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8476.JPG">
+            <span>Hội Báo Toàn Quốc 2024</span><small>Special Event</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8555.JPG">
+            <span>Họp Báo Công Bổ Live Concert Uyên Linh 2024</span
+            ><small>Special Event</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8557.JPG">
+            <span>Họp Báo Quốc Thiên Skynote Concert</span
+            ><small>Special Event</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8551.JPG">
+            <span>Họp Báo Ra Mắt MV Hồ Quỳnh Hương</span
+            ><small>Special Event</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/image2/Jack Gardiner – Asia Tour 2026 _ Vietnam/IMG_1046.JPG"
+          >
+            <span>Jack Gardiner – Asia Tour 2026 - Vietnam</span
+            ><small>Tour</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_8546.JPG">
+            <span>Lễ Công Bố Khơi Động Liên Hoang Phim Quốc Tế TP.HCM 2024</span
+            ><small>Special Event</small>
+          </div>
+          <div class="show-row" data-gallery="assets/IMG_0820.JPG">
+            <span>Live Show Nguyễn Hải Phong Symphony</span
+            ><small>Special Event</small>
+          </div>
+        </div>
+        <button class="show-toggle" id="showToggle">SHOW ALL (24 SHOWS)</button>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox" id="lightbox">
+      <button class="nav-btn prev-btn" id="prevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <img id="lightboxImg" />
+      <button class="nav-btn next-btn" id="nextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <span class="close-lightbox" id="closeLightbox">&times;</span>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-col">
+        <h3>HAU TRAN</h3>
+        <p>
+          Sound engineer and audio producer working at the intersection of
+          technical precision and creative instinct.
+        </p>
+      </div>
+
+      <div class="action-buttons">
+        <a href="mailto:tranhauaudio@gmail.com" class="action-btn btn-email"
+          ><i class="fas fa-envelope"></i> Email</a
+        >
+        <a href="tel:0984123494" class="action-btn btn-call"
+          ><i class="fas fa-phone"></i> Call</a
+        >
+      </div>
+
+      <!-- FOOTER ACCORDION (Mặc định đóng tất cả, bấm để mở) -->
+      <div class="footer-accordion">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            NAVIGATION <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <a href="index.html">Overview</a>
+            <a href="sound-engineer.html">Audio Director / Audio Engineer</a>
+            <a href="audio-producer.html">Music Producer</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            SERVICES <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <a href="sound-engineer.html">Live Sound & Events</a>
+            <a href="sound-engineer.html">Studio Recording</a>
+            <a href="audio-producer.html">Music Production & Beat</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            CONTACT <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <p>Email: tranhauaudio@gmail.com</p>
+            <p>Phone: 0984 123 494</p>
+            <p>Location: Ho Chi Minh City</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.facebook.com/tran.haudrum/" target="_blank"
+          ><i class="fab fa-facebook-f"></i> Facebook</a
+        >
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Trung Kien & Truc Vy. All rights reserved.</p>
+        <p>Designed for Sound. Built for Impact.</p>
+      </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+        <span>Overview</span>
+      </a>
+      <a href="sound-engineer.html" class="active">
+        <i class="fas fa-sliders"></i>
+        <span>Engineer</span>
+      </a>
+      <a href="audio-producer.html">
+        <i class="fas fa-compact-disc"></i>
+        <span>Producer</span>
+      </a>
+    </nav>
+
+    <script src="lang.js"></script>
+    <script>
+      // 1. Xử lý nút Show All cho Featured Shows
+      const showFeaturedBtn = document.getElementById("showFeaturedBtn");
+      const extraShows = document.querySelectorAll(".extra-show");
+      let isFeaturedExpanded = false;
+
+      if (showFeaturedBtn) {
+        showFeaturedBtn.addEventListener("click", function () {
+          isFeaturedExpanded = !isFeaturedExpanded;
+          extraShows.forEach((item) => {
+            item.style.display = isFeaturedExpanded ? "block" : "none";
+          });
+          showFeaturedBtn.textContent = isFeaturedExpanded
+            ? "SHOW LESS"
+            : "SHOW ALL (6 SHOWS)";
+        });
+      }
+
+      // 2. Xử lý nút Show All cho Other Shows (Dùng setProperty với !important để không bị file CSS ngoài đè)
+      const showToggleBtn = document.getElementById("showToggle");
+      const otherShowList = document.getElementById("otherShowList");
+      let isOtherExpanded = false;
+
+      if (showToggleBtn && otherShowList) {
+        const allRows = otherShowList.querySelectorAll(".show-row");
+
+        // Mặc định ẩn các show từ thứ 7 trở đi
+        allRows.forEach((row, index) => {
+          if (index >= 6) {
+            row.style.setProperty("display", "none", "important");
+          }
+        });
+
+        showToggleBtn.addEventListener("click", function () {
+          isOtherExpanded = !isOtherExpanded;
+          allRows.forEach((row, index) => {
+            if (index >= 6) {
+              row.style.setProperty(
+                "display",
+                isOtherExpanded ? "flex" : "none",
+                "important",
+              );
+            }
+          });
+          showToggleBtn.textContent = isOtherExpanded
+            ? "SHOW LESS"
+            : "SHOW ALL (24 SHOWS)";
+        });
+      }
+
+      // Xử lý Accordion Footer (Navigation, Services, Contact)
+      const accordionHeaders = document.querySelectorAll(".accordion-header");
+      accordionHeaders.forEach((header) => {
+        header.addEventListener("click", function () {
+          const item = this.parentElement;
+          const content = item.querySelector(".accordion-content");
+          const icon = this.querySelector(".icon-toggle");
+
+          // Kiểm tra trạng thái hiện tại
+          const isOpen = content.style.display === "block";
+
+          // Đóng tất cả các mục khác trước (nếu muốn mỗi lần chỉ mở 1 mục)
+          // accordionHeaders.forEach(h => {
+          //   h.parentElement.querySelector(".accordion-content").style.display = "none";
+          //   h.querySelector(".icon-toggle").textContent = "+";
+          // });
+
+          // Toggle mục hiện tại
+          if (isOpen) {
+            content.style.display = "none";
+            icon.textContent = "+";
+          } else {
+            content.style.display = "block";
+            icon.textContent = "-";
+          }
+        });
+      });
+      // 3. Xử lý Lightbox hiển thị ảnh phóng to và nút qua lại (Next/Prev)
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const closeLightbox = document.getElementById("closeLightbox");
+
+      let currentImages = [];
+      let currentIndex = 0;
+
+      // Click vào Featured Shows
+      document.querySelectorAll(".sound-work-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const imgs = item.querySelectorAll("img");
+          if (imgs.length > 0) {
+            currentImages = Array.from(imgs).map((img) => img.src);
+            const activeImg = item.querySelector("img.active") || imgs[0];
+            currentIndex = currentImages.indexOf(activeImg.src);
+            if (currentIndex === -1) currentIndex = 0;
+
+            lightboxImg.src = currentImages[currentIndex];
+            lightbox.style.display = "flex";
+          }
+        });
+      });
+
+      // Click vào các mục trong Other Shows
+      document.querySelectorAll(".show-row").forEach((row) => {
+        row.addEventListener("click", function () {
+          const galleryAttr = row.getAttribute("data-gallery");
+          if (galleryAttr) {
+            currentImages = galleryAttr.split(",").map((url) => url.trim());
+            currentIndex = 0;
+            lightboxImg.src = currentImages[currentIndex];
+            lightbox.style.display = "flex";
+          }
+        });
+      });
+
+      // Nút Next
+      nextBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (currentImages.length > 0) {
+          currentIndex = (currentIndex + 1) % currentImages.length;
+          lightboxImg.src = currentImages[currentIndex];
+        }
+      });
+
+      // Nút Prev
+      prevBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (currentImages.length > 0) {
+          currentIndex =
+            (currentIndex - 1 + currentImages.length) % currentImages.length;
+          lightboxImg.src = currentImages[currentIndex];
+        }
+      });
+
+      // Đóng Lightbox
+      closeLightbox.addEventListener("click", function () {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    </script>
+    <script>
+      // Tự động xóa huy hiệu Netlify nếu nó hiển thị trên trang
+      window.addEventListener("DOMContentLoaded", () => {
+        const badge = document.querySelector('a[href*="netlify.com"]');
+        if (badge) {
+          badge.remove();
+        }
+      });
+    </script>
+  </body>
+</html>

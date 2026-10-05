@@ -354,7 +354,7 @@
         font-size: 14px;
       }
 
-    .footer-bottom {
+      .footer-bottom {
         text-align: center;
         padding: 15px 0 10px 0;
         font-size: 10px;
@@ -792,36 +792,37 @@
 
       <div class="footer-accordion">
         <div class="accordion-item">
-          <div class="accordion-header">
+          <div
+            id="footerNavTitle"
+            class="accordion-header"
+            style="font-family: Arial"
+          >
             NAVIGATION <span class="icon-toggle">+</span>
           </div>
           <div class="accordion-content">
-            <a href="index.html">Overview</a>
-            <a href="sound-engineer.html">Audio Director / Audio Engineer</a>
-            <a href="audio-producer.html">Music Producer</a>
-            <a href="performance.html">Performance</a>
+            <a href="index.html" id="footerNavOverview">Overview</a>
+            <a href="sound-engineer.html" id="footerNavSound"
+              >Audio Director / Audio Engineer</a
+            >
+            <a href="audio-producer.html" id="footerNavProducer"
+              >Music Producer</a
+            >
+            <a href="performance.html" id="footerNavPerformance">Performance</a>
           </div>
         </div>
 
         <div class="accordion-item">
-          <div class="accordion-header">
-            SERVICES <span class="icon-toggle">+</span>
-          </div>
-          <div class="accordion-content">
-            <a href="sound-engineer.html">Live Sound & Events</a>
-            <a href="sound-engineer.html">Studio Recording</a>
-            <a href="audio-producer.html">Music Production & Beat</a>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-header">
+          <div
+            id="footerContactTitle"
+            class="accordion-header"
+            style="font-family: Arial"
+          >
             CONTACT <span class="icon-toggle">+</span>
           </div>
           <div class="accordion-content">
             <p>Email: tranhauaudio@gmail.com</p>
             <p>Phone: 0984 123 494</p>
-            <p>Location: Ho Chi Minh City</p>
+            <p id="footerLocation">Location: Ho Chi Minh City</p>
           </div>
         </div>
       </div>

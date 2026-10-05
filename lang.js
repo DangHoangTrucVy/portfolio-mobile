@@ -3,9 +3,10 @@ const translations = {
     navOverview: "Overview",
     navSound: "Audio Director / Audio Engineer",
     navProducer: "Music Producer",
+    navPerformance: "Performance & Musical Background",
 
     chooseSoundTitle: "Audio Director / Audio Engineer",
-    chooseSoundDesc: "Live events. Studio recordings. Post-production.",
+    chooseSoundDesc: "Live Sound. Studio Recording. Audio Post - Production",
     chooseProducerTitle: "Music Producer",
     chooseProducerDesc: "Original compositions. Beats. Film scoring.",
     explore: "Explore →",
@@ -15,12 +16,18 @@ const translations = {
     statArtists: "Artists Worked With",
     statAwards: "Awards & Recognition",
 
+    perfTitle: "PERFORMANCE & MUSICAL BACKGROUND",
+    gameShowsTitle: "Game Shows",
+    liveShowsTitle: "Live Shows",
+    judgingTitle: "Judging",
+    judgeRole: "Judge",
+
     quoteText:
       "Hau hears things the rest of us miss. He doesn’t just engineer the sound — he shapes the way the room feels when the music hits.",
     quoteAuthor: "— Linh Phuong, Recording Artist & Vocalist",
 
     soundTitle: "Audio Director / Audio Engineer",
-    soundDesc: "Live events. Studio recordings. Post-production.",
+    soundDesc: "Live Sound. Studio Recording. Audio Post - Production",
     whatTitle: "What I Do",
     liveSoundTitle: "Live Event Sound",
     liveSoundDesc:
@@ -34,17 +41,13 @@ const translations = {
 
     processTitle: "How It Works",
     step1Title: "Brief & Discovery",
-    step1Desc:
-      "Understanding your vision, venue, and technical requirements.",
+    step1Desc: "Understanding your vision, venue, and technical requirements.",
     step2Title: "Pre-Production",
-    step2Desc:
-      "Equipment specification, stage plot, signal flow design.",
+    step2Desc: "Equipment specification, stage plot, signal flow design.",
     step3Title: "Execution",
-    step3Desc:
-      "On-site or in-studio engineering, real-time problem solving.",
+    step3Desc: "On-site or in-studio engineering, real-time problem solving.",
     step4Title: "Delivery",
-    step4Desc:
-      "Final files, stems, show reports, and revision rounds.",
+    step4Desc: "Final files, stems, show reports, and revision rounds.",
 
     featuredShows: "Featured Shows",
     otherShows: "Other Shows",
@@ -75,19 +78,26 @@ const translations = {
     footerMix: "Mix & Mastering",
     footerMusic: "Music Production",
     footerLocation: "Location: Ho Chi Minh City",
-    footerBottom: "Designed for Sound. Built for Impact."
+    footerBottom: "Designed for Sound. Built for Impact.",
   },
 
   vi: {
     navOverview: "Tổng Quan",
     navSound: "Kỹ Sư Âm Thanh",
     navProducer: "Nhà Sản Xuất Âm Nhạc",
+    navPerformance: "Biểu Diễn & Nền Tảng Âm Nhạc",
 
     chooseSoundTitle: "Kỹ Sư Âm Thanh",
-    chooseSoundDesc: "Sự kiện trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
+    chooseSoundDesc: "Âm thanh trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
     chooseProducerTitle: "Nhà Sản Xuất Âm Nhạc",
     chooseProducerDesc: "Sáng tác nhạc. Sản xuất beat. Nhạc phim.",
     explore: "Khám phá →",
+
+    perfTitle: "BIỂU DIỄN & NỀN TẢNG ÂM NHẠC",
+    gameShowsTitle: "Chương Trình Game Show",
+    liveShowsTitle: "Chương Trình Trực Tiếp (Live Shows)",
+    judgingTitle: "Công Tác Giám Khảo",
+    judgeRole: "Giám Khảo",
 
     statProjects: "Dự Án Hoàn Thành",
     statYears: "Năm Kinh Nghiệm",
@@ -99,7 +109,7 @@ const translations = {
     quoteAuthor: "— Linh Phương, Nghệ sĩ Thu Âm & Ca sĩ",
 
     soundTitle: "Kỹ Sư Âm Thanh",
-    soundDesc: "Sự kiện trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
+    soundDesc: "Âm thanh trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
     whatTitle: "Công Việc Tôi Làm",
     liveSoundTitle: "Âm Thanh Sự Kiện",
     liveSoundDesc:
@@ -116,8 +126,7 @@ const translations = {
     step1Desc:
       "Tìm hiểu ý tưởng, không gian biểu diễn và yêu cầu kỹ thuật của dự án.",
     step2Title: "Tiền Kỳ",
-    step2Desc:
-      "Lên cấu hình thiết bị, stage plot và thiết kế luồng tín hiệu.",
+    step2Desc: "Lên cấu hình thiết bị, stage plot và thiết kế luồng tín hiệu.",
     step3Title: "Triển Khai",
     step3Desc:
       "Vận hành âm thanh tại hiện trường hoặc trong phòng thu, xử lý tình huống theo thời gian thực.",
@@ -154,8 +163,8 @@ const translations = {
     footerMix: "Mix & Master",
     footerMusic: "Sản Xuất Âm Nhạc",
     footerLocation: "Địa điểm: TP. Hồ Chí Minh",
-    footerBottom: "Thiết kế cho âm thanh. Tạo nên dấu ấn."
-  }
+    footerBottom: "Thiết kế cho âm thanh. Tạo nên dấu ấn.",
+  },
 };
 
 function setLanguage(lang) {
@@ -171,6 +180,7 @@ function setLanguage(lang) {
   setText("navOverview", t.navOverview);
   setText("navSound", t.navSound);
   setText("navProducer", t.navProducer);
+  setText("navPerf", t.navPerformance);
 
   setText("soundTitle", t.soundTitle);
   setText("soundDesc", t.soundDesc);
@@ -182,6 +192,12 @@ function setLanguage(lang) {
   setText("chooseSoundDesc", t.chooseSoundDesc);
   setText("chooseProducerTitle", t.chooseProducerTitle);
   setText("chooseProducerDesc", t.chooseProducerDesc);
+
+  setText("perfHeroTitle", t.perfTitle);
+  setText("titleGameShows", t.gameShowsTitle);
+  setText("titleLiveShows", t.liveShowsTitle);
+  setText("titleJudging", t.judgingTitle);
+  setText("roleJudge", t.judgeRole);
 
   document.querySelectorAll(".choose-card span").forEach((el) => {
     el.innerText = t.explore;
@@ -241,7 +257,9 @@ function setLanguage(lang) {
 
   const showToggle = document.getElementById("showToggle");
   if (showToggle) {
-    const isOpen = document.querySelector(".show-list")?.classList.contains("show-all");
+    const isOpen = document
+      .querySelector(".show-list")
+      ?.classList.contains("show-all");
     showToggle.innerText = isOpen ? t.showLess : t.showAll;
   }
 
@@ -261,7 +279,8 @@ function setLanguage(lang) {
   }
 
   const collaborationsTitle = document.querySelector(".productions h2");
-  if (collaborationsTitle) collaborationsTitle.innerText = t.collaborationsTitle;
+  if (collaborationsTitle)
+    collaborationsTitle.innerText = t.collaborationsTitle;
 
   const footerDesc = document.querySelector(".footer-col:first-child p");
   if (footerDesc) footerDesc.innerText = t.footerDesc;
@@ -277,7 +296,7 @@ function setLanguage(lang) {
       navLinks[0].innerText = t.navOverview;
       navLinks[1].innerText = t.navSound;
       navLinks[2].innerText = t.navProducer;
-      navLinks[3].innerText = t.footerContact;
+      navLinks[3].innerText = t.navPerformance;
     }
 
     const serviceLinks = footerCols[2].querySelectorAll("a");

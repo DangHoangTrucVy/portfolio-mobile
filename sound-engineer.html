@@ -144,10 +144,6 @@
         font-family: "Oswald", sans-serif;
       }
 
-      .sound-work-item.extra-show {
-        display: none;
-      }
-
       .show-toggle {
         width: 100%;
         padding: 12px;
@@ -309,35 +305,37 @@
         color: #fff;
       }
 
-      .footer-links-group {
-        border-top: 1px solid #222;
+      .accordion-item {
+        border-bottom: 1px solid #222;
       }
-      .footer-link-row {
+      .accordion-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 14px 0;
-        border-bottom: 1px solid #222;
         color: #fff;
         font-family: "Bebas Neue", sans-serif;
         font-size: 16px;
         letter-spacing: 1px;
+        cursor: pointer;
       }
-      .footer-link-row::after {
-        content: "+";
+      .accordion-header .icon-toggle {
         color: #ff5722;
         font-size: 18px;
       }
-
-      .contact-info {
-        padding: 15px 0;
-        border-bottom: 1px solid #222;
+      .accordion-content {
+        display: none;
+        padding-bottom: 15px;
       }
-      .contact-info p {
-        margin: 6px 0;
-        font-size: 12px;
+      .accordion-content a,
+      .accordion-content p {
         color: #aaa;
+        font-size: 12px;
+        text-decoration: none;
+        display: block;
+        margin: 6px 0;
       }
+
       .social-row {
         display: flex;
         align-items: center;
@@ -347,12 +345,16 @@
         color: #fff;
         font-size: 12px;
       }
+      .social-row a {
+        color: #fff;
+        text-decoration: none;
+      }
       .social-row i {
         color: #fff;
         font-size: 14px;
       }
 
-      .footer-bottom {
+    .footer-bottom {
         text-align: center;
         padding: 15px 0 10px 0;
         font-size: 10px;
@@ -443,6 +445,22 @@
 
         <div class="sound-work-item showcase-slider">
           <img
+            src="assets/image2/Grand Opus Piano Competition GOPC 2024/IMG_8359.JPG"
+            class="active"
+          />
+          <img
+            src="assets/image2/Grand Opus Piano Competition GOPC 2024/IMG_8360.JPG"
+          />
+          <img
+            src="assets/image2/Grand Opus Piano Competition GOPC 2024/IMG_8361.JPG"
+          />
+          <div class="sound-overlay">
+            <p>Grand Opus Piano Competition GOPC 2024</p>
+          </div>
+        </div>
+
+        <div class="sound-work-item showcase-slider">
+          <img
             src="assets/image/2. Sound Healing Concert 2026/07E82560-D24B-4DC6-A290-BD4B47B7B992.png"
             class="active"
           />
@@ -489,7 +507,7 @@
         </div>
 
         <!-- Các show ẩn (Featured) -->
-        <div class="sound-work-item showcase-slider extra-show">
+        <div class="sound-work-item showcase-slider">
           <img
             src="assets/image/5. Hội Thuần Hội 2024/IMG_8498.JPG"
             class="active"
@@ -501,6 +519,38 @@
 
         <div class="sound-work-item showcase-slider extra-show">
           <img
+            src="assets/image/9. Just Rock 2024/IMG_8469.JPG"
+            class="active"
+          />
+          <img src="assets/image/9. Just Rock 2024/IMG_8470.JPG" />
+          <img src="assets/image/9. Just Rock 2024/IMG_8471.JPG" />
+          <img src="assets/image/9. Just Rock 2024/IMG_8473.JPG" />
+          <img src="assets/image/9. Just Rock 2024/IMG_8474.JPG" />
+          <img src="assets/image/9. Just Rock 2024/IMG_8475.JPG" />
+          <div class="sound-overlay">
+            <p>Just Rock 2024</p>
+          </div>
+        </div>
+
+        <div class="sound-work-item showcase-slider extra-show">
+          <img
+            src="assets/image/10. La Musica Fes/607722145_122112371883141145_6497519304125968365_n.jpg"
+            class="active"
+          />
+          <img
+            src="assets/image/10. La Musica Fes/619373791_122116531899141145_1076480621119345369_n.jpg"
+          />
+          <img
+            src="assets/image/10. La Musica Fes/626686998_122117586009141145_5643325806134797381_n.jpg"
+          />
+          <img src="assets/image/10. La Musica Fes/IMG_2331.JPG" />
+          <img src="assets/image/10. La Musica Fes/IMG_2334.JPG" />
+          <div class="sound-overlay">
+            <p>La Musica Fes</p>
+          </div>
+        </div>
+        <div class="sound-work-item showcase-slider">
+          <img
             src="assets/image/6. Ghibli Concert/IMG_8482.JPG"
             class="active"
           />
@@ -509,11 +559,20 @@
           <img src="assets/image/6. Ghibli Concert/IMG_8485.JPG" />
           <div class="sound-overlay"><p>Ghibli Concert</p></div>
         </div>
+
+        <div class="sound-work-item showcase-slider">
+          <img
+            src="assets/image/11. Acecook Concert/IMG_2339.JPG"
+            class="active"
+          />
+          <img src="assets/image/11. Acecook Concert/IMG_2340.JPG" />
+          <div class="sound-overlay">
+            <p>Acecook Happiness Concert 30 Years Of Acecook VietNam’s</p>
+          </div>
+        </div>
       </div>
 
-      <button id="showFeaturedBtn" class="show-toggle">
-        SHOW ALL (6 SHOWS)
-      </button>
+      <button id="showFeaturedBtn" class="show-toggle">SHOW ALL</button>
 
       <!-- OTHER SHOWS -->
       <div class="other-shows">
@@ -541,10 +600,10 @@
           </div>
           <div
             class="show-row"
-            data-gallery="assets/image2/4. Grammy Award Winner Sangeeta Kaur/IMG_8494.JPG"
+            data-gallery="assets/image2/4. Grammy Award Winner Sangeeta Kaur/IMG_8495.JPG,assets/image2/4. Grammy Award Winner Sangeeta Kaur/IMG_8496.JPG"
           >
-            <span>Grammy Award Winner Sangeeta Kaur</span
-            ><small>Special Event</small>
+            <span>Grammy Award Winner Sangeeta Kaur</span>
+            <small>Special Event</small>
           </div>
           <div
             class="show-row"
@@ -602,6 +661,13 @@
           </div>
           <div
             class="show-row"
+            data-gallery="assets/image2/Motul Festival 2024/IMG_8406.JPG,assets/image2/Motul Festival 2024/IMG_8407.JPG"
+          >
+            <span>Motul Festival 2024</span>
+            <small>Festival</small>
+          </div>
+          <div
+            class="show-row"
             data-gallery="assets/image2/DOC MusicShow 2024/IMG_8570.JPG"
           >
             <span>DOC MusicShow 2024</span><small>Music Show</small>
@@ -654,8 +720,43 @@
             <span>Live Show Nguyễn Hải Phong Symphony</span
             ><small>Special Event</small>
           </div>
+          <div
+            class="show-row"
+            data-gallery="assets/K-Drama OST Concert 2025/IMG_2395.JPG,assets/K-Drama OST Concert 2025/IMG_2396.JPG"
+          >
+            <span>K-Drama OST Concert 2025</span>
+            <small>Concert</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/Musicland Festival/IMG_2391.JPG,assets/Musicland Festival/IMG_2392.JPG,assets/Musicland Festival/IMG_2393.JPG"
+          >
+            <span>Musica land Fes</span>
+            <small>Fes</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/Ocean by Night - Singapore/IMG_2396.JPG,assets/Ocean by Night - Singapore/IMG_2397.JPG"
+          >
+            <span>Ocean by Night - Singapore</span>
+            <small>Fes</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/Rise Of The Underdogs - Rotu 2 - 2025/485148583_986880500302544_95470294653429835_n.jpg,assets/Rise Of The Underdogs - Rotu 2 - 2025/485149949_986884460302148_3970737936163161354_n.jpg,assets/Rise Of The Underdogs - Rotu 2 - 2025/485766874_986880396969221_4337154923486061724_n.jpg,assets/Rise Of The Underdogs - Rotu 2 - 2025/485801994_986884530302141_3819594107450007919_n (1).jpg,assets/Rise Of The Underdogs - Rotu 2 - 2025/486372283_986877880302806_4119104334965541288_n.jpg"
+          >
+            <span>Rise Of The Underdogs - Rotu 2 - 2025</span>
+            <small>Fes</small>
+          </div>
+          <div
+            class="show-row"
+            data-gallery="assets/Saigon Choir Concert - Hạt Dẻ 3/IMG_2398.JPG,assets/Saigon Choir Concert - Hạt Dẻ 3/IMG_2399.JPG,assets/Saigon Choir Concert - Hạt Dẻ 3/IMG_2400.JPG,assets/Saigon Choir Concert - Hạt Dẻ 3/IMG_2401.JPG"
+          >
+            <span>Saigon Choir Concert - Hạt dẻ 3</span>
+            <small>Concert</small>
+          </div>
         </div>
-        <button class="show-toggle" id="showToggle">SHOW ALL (24 SHOWS)</button>
+        <button class="show-toggle" id="showToggle">SHOW ALL</button>
       </div>
     </section>
 
@@ -689,7 +790,6 @@
         >
       </div>
 
-      <!-- FOOTER ACCORDION (Mặc định đóng tất cả, bấm để mở) -->
       <div class="footer-accordion">
         <div class="accordion-item">
           <div class="accordion-header">
@@ -699,6 +799,7 @@
             <a href="index.html">Overview</a>
             <a href="sound-engineer.html">Audio Director / Audio Engineer</a>
             <a href="audio-producer.html">Music Producer</a>
+            <a href="performance.html">Performance</a>
           </div>
         </div>
 
@@ -750,28 +851,43 @@
         <i class="fas fa-compact-disc"></i>
         <span>Producer</span>
       </a>
+      <a href="performance.html">
+        <i class="fas fa-microphone"></i>
+        <span>Performance</span>
+      </a>
     </nav>
 
     <script src="lang.js"></script>
     <script>
       // 1. Xử lý nút Show All cho Featured Shows
       const showFeaturedBtn = document.getElementById("showFeaturedBtn");
-      const extraShows = document.querySelectorAll(".extra-show");
+      const allFeaturedItems = document.querySelectorAll(
+        "#soundWorkGrid .sound-work-item",
+      );
       let isFeaturedExpanded = false;
 
-      if (showFeaturedBtn) {
+      if (showFeaturedBtn && allFeaturedItems.length > 5) {
+        // Mặc định ẩn từ show thứ 6 trở đi bằng important
+        for (let i = 5; i < allFeaturedItems.length; i++) {
+          allFeaturedItems[i].style.setProperty("display", "none", "important");
+        }
+
         showFeaturedBtn.addEventListener("click", function () {
           isFeaturedExpanded = !isFeaturedExpanded;
-          extraShows.forEach((item) => {
-            item.style.display = isFeaturedExpanded ? "block" : "none";
-          });
+          for (let i = 5; i < allFeaturedItems.length; i++) {
+            allFeaturedItems[i].style.setProperty(
+              "display",
+              isFeaturedExpanded ? "block" : "none",
+              "important",
+            );
+          }
           showFeaturedBtn.textContent = isFeaturedExpanded
             ? "SHOW LESS"
-            : "SHOW ALL (6 SHOWS)";
+            : "SHOW ALL";
         });
       }
 
-      // 2. Xử lý nút Show All cho Other Shows (Dùng setProperty với !important để không bị file CSS ngoài đè)
+      // 2. Xử lý nút Show All cho Other Shows
       const showToggleBtn = document.getElementById("showToggle");
       const otherShowList = document.getElementById("otherShowList");
       let isOtherExpanded = false;
@@ -779,7 +895,6 @@
       if (showToggleBtn && otherShowList) {
         const allRows = otherShowList.querySelectorAll(".show-row");
 
-        // Mặc định ẩn các show từ thứ 7 trở đi
         allRows.forEach((row, index) => {
           if (index >= 6) {
             row.style.setProperty("display", "none", "important");
@@ -799,11 +914,11 @@
           });
           showToggleBtn.textContent = isOtherExpanded
             ? "SHOW LESS"
-            : "SHOW ALL (24 SHOWS)";
+            : "SHOW ALL";
         });
       }
 
-      // Xử lý Accordion Footer (Navigation, Services, Contact)
+      // Xử lý Accordion Footer
       const accordionHeaders = document.querySelectorAll(".accordion-header");
       accordionHeaders.forEach((header) => {
         header.addEventListener("click", function () {
@@ -811,16 +926,8 @@
           const content = item.querySelector(".accordion-content");
           const icon = this.querySelector(".icon-toggle");
 
-          // Kiểm tra trạng thái hiện tại
           const isOpen = content.style.display === "block";
 
-          // Đóng tất cả các mục khác trước (nếu muốn mỗi lần chỉ mở 1 mục)
-          // accordionHeaders.forEach(h => {
-          //   h.parentElement.querySelector(".accordion-content").style.display = "none";
-          //   h.querySelector(".icon-toggle").textContent = "+";
-          // });
-
-          // Toggle mục hiện tại
           if (isOpen) {
             content.style.display = "none";
             icon.textContent = "+";
@@ -830,6 +937,7 @@
           }
         });
       });
+
       // 3. Xử lý Lightbox hiển thị ảnh phóng to và nút qua lại (Next/Prev)
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightboxImg");
@@ -840,7 +948,6 @@
       let currentImages = [];
       let currentIndex = 0;
 
-      // Click vào Featured Shows
       document.querySelectorAll(".sound-work-item").forEach((item) => {
         item.addEventListener("click", function () {
           const imgs = item.querySelectorAll("img");
@@ -856,7 +963,6 @@
         });
       });
 
-      // Click vào các mục trong Other Shows
       document.querySelectorAll(".show-row").forEach((row) => {
         row.addEventListener("click", function () {
           const galleryAttr = row.getAttribute("data-gallery");
@@ -869,7 +975,6 @@
         });
       });
 
-      // Nút Next
       nextBtn.addEventListener("click", function (e) {
         e.stopPropagation();
         if (currentImages.length > 0) {
@@ -878,7 +983,6 @@
         }
       });
 
-      // Nút Prev
       prevBtn.addEventListener("click", function (e) {
         e.stopPropagation();
         if (currentImages.length > 0) {
@@ -888,7 +992,6 @@
         }
       });
 
-      // Đóng Lightbox
       closeLightbox.addEventListener("click", function () {
         lightbox.style.display = "none";
       });
@@ -900,7 +1003,6 @@
       });
     </script>
     <script>
-      // Tự động xóa huy hiệu Netlify nếu nó hiển thị trên trang
       window.addEventListener("DOMContentLoaded", () => {
         const badge = document.querySelector('a[href*="netlify.com"]');
         if (badge) {

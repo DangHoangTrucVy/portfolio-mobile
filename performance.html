@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Performance & Musical Background</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+      /* --- MOBILE APP UI & GLOBAL STYLES --- */
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        background-color: #080808;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Header / Navbar tối ưu mobile */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        background: #0b0b0b;
+        border-bottom: 1px solid #1a1a1a;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .logo1 img {
+        height: 32px;
+        border-radius: 4px;
+      }
+      nav {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+      }
+      nav::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+      nav a {
+        color: #888;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 4px;
+        transition: color 0.2s, background 0.2s;
+      }
+      nav a.active, nav a:hover {
+        color: #fff;
+        background: #1a1a1a;
+      }
+      .lang-switch {
+        display: flex;
+        gap: 4px;
+      }
+      .lang-switch button {
+        background: #161616;
+        border: 1px solid #222;
+        color: #aaa;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .sound-hero {
+        position: relative;
+        padding: 60px 16px;
+        text-align: center;
+        background: #080808;
+        overflow: hidden;
+        border-bottom: 1px solid #1a1a1a;
+      }
+      .sound-hero h1 {
+        font-family: "Montserrat", "Oswald", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem; /* Điều chỉnh kích thước vừa vặn trên mobile */
+        letter-spacing: 1px;
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
+
+      /* Sections chung */
+      .perf-section,
+      .perf-section1 {
+        width: 100%;
+        margin: 30px auto;
+        padding: 0 16px;
+      }
+      .perf-section h2,
+      .perf-section1 h2 {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.4rem;
+        color: #fff;
+        margin-bottom: 16px;
+        border-left: 3px solid #ff4500;
+        padding-left: 10px;
+        letter-spacing: 0.5px;
+      }
+
+      /* BẢNG DANH SÁCH CHUNG */
+      .liveshow-table {
+        background: #111;
+        border: 1px solid #1f1f1f;
+        border-radius: 8px;
+        padding: 0 16px;
+      }
+      .liveshow-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid #1a1a1a;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+      }
+      .liveshow-row:last-child {
+        border-bottom: none;
+      }
+      .liveshow-row span:first-child {
+        color: #ddd;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .liveshow-row span:first-child small {
+        color: #777;
+        font-size: 0.75rem;
+      }
+      .liveshow-row span:last-child {
+        color: #ff4500;
+        font-weight: 600;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        background: #1a0a07;
+        border: 1px solid rgba(255, 69, 0, 0.2);
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      /* Khối Judging */
+      .judging-box {
+        background: #111;
+        border: 1px solid #1f1f1f;
+        border-radius: 8px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+      }
+      .judging-year {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.5rem;
+        color: #ff4500;
+        line-height: 1;
+      }
+      .judging-details .role {
+        font-family: "Inter", sans-serif;
+        font-size: 0.75rem;
+        color: #777;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+      .judging-details .name {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        color: #fff;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      /* Footer Mobile & Accordion Styles */
+      .footer {
+        padding: 30px 20px 80px 20px; /* Chừa khoảng trống cho bottom nav */
+        background: #0b0b0b;
+        font-size: 12px;
+        color: #aaa;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .footer h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        color: #fff;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+      .footer p {
+        margin: 0 0 15px 0;
+        line-height: 1.5;
+        font-size: 13px;
+        color: #bbb;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+        width: 100%;
+      }
+      .action-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid #333;
+      }
+      .btn-email {
+        background: #ff5722;
+        color: #fff;
+        border-color: #ff5722;
+      }
+      .btn-call {
+        background: #161616;
+        color: #fff;
+      }
+
+      /* CSS Accordion */
+      .accordion-item {
+        border-bottom: 1px solid #1a1a1a;
+      }
+      .accordion-header {
+        padding: 14px 0;
+        font-family: "Oswald", sans-serif;
+        font-size: 1rem;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .accordion-header .icon-toggle {
+        font-size: 1.2rem;
+        color: #ff5722;
+        font-weight: bold;
+      }
+      .accordion-content {
+        display: none; /* Mặc định ẩn */
+        padding-bottom: 12px;
+      }
+      .accordion-content a,
+      .accordion-content p {
+        color: #aaa;
+        font-size: 0.85rem;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .accordion-item.active .accordion-content {
+        display: block; /* Hiện khi active */
+      }
+
+      .social-row {
+        margin-top: 15px;
+      }
+      .social-row a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #161616;
+        padding: 8px 14px;
+        border-radius: 4px;
+        border: 1px solid #222;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding: 15px 0 10px 0;
+        font-size: 10px;
+        color: #666;
+        line-height: 1.4;
+        border-top: 1px solid #1a1a1a;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      /* Bottom Navigation cố định dưới màn hình mobile */
+      .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #111;
+        border-top: 1px solid #222;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+      }
+      .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #777;
+        font-size: 10px;
+        gap: 3px;
+      }
+      .mobile-bottom-nav a i {
+        font-size: 16px;
+      }
+      .mobile-bottom-nav a.active {
+        color: #ff5722;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html" class="logo1">
+        <img src="assets/lo.jpg" alt="Logo" />
+      </a>
+      <nav>
+        <a href="index.html" id="navOverview">Overview</a>
+        <a href="sound-engineer.html" id="navSound">Audio Director / Audio Engineer</a>
+        <a href="audio-producer.html" id="navProducer">Music Producer</a>
+        <a href="performance.html" class="active" id="navPerf">Performance</a>
+      </nav>
+      <div class="lang-switch">
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('vi')">VI</button>
+      </div>
+    </header>
+
+    <section class="sound-hero">
+      <div
+        style="
+          position: absolute;
+          top: -50%;
+          left: -20%;
+          right: -20%;
+          bottom: -50%;
+          background:
+            linear-gradient(115deg, transparent 30%, rgba(160, 40, 10, 0.25) 45%, transparent 50%),
+            linear-gradient(125deg, transparent 55%, rgba(200, 50, 15, 0.2) 65%, transparent 70%),
+            linear-gradient(105deg, transparent 20%, rgba(120, 30, 5, 0.3) 35%, transparent 40%);
+          transform: rotate(-10deg);
+          pointer-events: none;
+        "
+      ></div>
+      <h1 id="perfHeroTitle">PERFORMANCE & MUSICAL BACKGROUND</h1>
+    </section>
+
+    <!-- GAME SHOWS -->
+    <section class="perf-section">
+      <h2 id="titleGameShows">Game Shows</h2>
+      <div class="liveshow-table">
+        <div class="liveshow-row">
+          <span>Thần Tượng Âm Nhạc <small>Vietnam Idol</small></span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Thần Tượng Âm Nhạc Nhí <small>Vietnam Idol Kids</small></span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>The Remix <small>Chung Kết</small></span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Giọng Hát Việt <small>The Voice</small></span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Giọng Hát Việt Nhí <small>The Voice Kids</small></span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Tuyệt Đình Song Ca</span><span>THVL</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Thần Tượng Bolero</span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Sao Đại Chiến</span><span>VTV3</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Ai Sẽ Thành Sao</span><span>THVL</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Ai Sẽ Thành Sao Nhí</span><span>THVL</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Tiếng Hát Mãi Xanh</span><span>HTV</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Sàn Đấu Ca Từ</span><span>HTV7</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Giọng Ca Bất Bại</span><span>HTV7</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Sô Diễn Cuộc Đời</span><span>HTV7</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Dấu Ấn Huyền Thoại</span><span>HTV7</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE SHOWS -->
+    <section class="perf-section">
+      <h2 id="titleLiveShows">Live Shows</h2>
+      <div class="liveshow-table">
+        <div class="liveshow-row">
+          <span>Live Show Noo Phước Thịnh</span><span>2016</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Live Show Thu Minh Fire Phoenix</span><span>2016</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Master Ruma Hoà Nhạc - Cambodia</span><span>2017</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Pro Sound Vietnam</span><span>2018-2019</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Festival Dj VietNam</span><span>2019</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Hozo Festival</span><span>2019</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Đại nhạc hội The Phoenix Empire</span><span>2020</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Hội Festival</span><span>2020-2022</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Lumos Festival (France)</span><span>2020</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Yamaha Roadtrip</span><span>2021-2022</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Những Thành Phố Mơ Màng</span><span>2022-2023</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Heineken Aftermovie</span><span>2022</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Live Show Trịnh Thăng Bình</span><span>2022</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Festival Biển Nha Trang</span><span>2023</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Festival Bình Thuận</span><span>2023</span>
+        </div>
+        <div class="liveshow-row">
+          <span>My Soul 1981 - Mỹ Tâm</span><span>2023</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Hiff - Ho Chi Minh City International Film Festival</span><span>2024</span>
+        </div>
+        <div class="liveshow-row">
+          <span>Sketch A Rose in Sai Gon - Hà Anh Tuấn</span><span>2025</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- JUDGING -->
+    <section class="perf-section1">
+      <h2 id="titleJudging">Judging</h2>
+      <div class="judging-box">
+        <div class="judging-year">2024</div>
+        <div class="judging-details">
+          <div class="role" id="roleJudge">Judge</div>
+          <div class="name">MixWiz Viet Nam</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-col">
+        <h3>HAU TRAN</h3>
+        <p>
+          Sound engineer and audio producer working at the intersection of
+          technical precision and creative instinct.
+        </p>
+      </div>
+
+      <div class="action-buttons">
+        <a href="mailto:tranhauaudio@gmail.com" class="action-btn btn-email">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+        <a href="tel:0984123494" class="action-btn btn-call">
+          <i class="fas fa-phone"></i> Call
+        </a>
+      </div>
+
+      <!-- FOOTER ACCORDION -->
+      <div class="footer-accordion">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            NAVIGATION <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <a href="index.html">Overview</a>
+            <a href="sound-engineer.html">Audio Director / Audio Engineer</a>
+            <a href="audio-producer.html">Music Producer</a>
+            <a href="performance.html">Performance</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            SERVICES <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <a href="sound-engineer.html">Live Sound & Events</a>
+            <a href="sound-engineer.html">Studio Recording</a>
+            <a href="audio-producer.html">Music Production & Beat</a>
+            <a href="performance.html">Performance</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            CONTACT <span class="icon-toggle">+</span>
+          </div>
+          <div class="accordion-content">
+            <p>Email: tranhauaudio@gmail.com</p>
+            <p>Phone: 0984 123 494</p>
+            <p>Location: Ho Chi Minh City</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.facebook.com/tran.haudrum/" target="_blank">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Trung Kien & Truc Vy. All rights reserved.</p>
+        <p>Designed for Sound. Built for Impact.</p>
+      </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+        <span>Overview</span>
+      </a>
+      <a href="sound-engineer.html">
+        <i class="fas fa-sliders"></i>
+        <span>Engineer</span>
+      </a>
+      <a href="audio-producer.html">
+        <i class="fas fa-compact-disc"></i>
+        <span>Producer</span>
+      </a>
+      <a href="performance.html" class="active">
+        <i class="fas fa-microphone"></i>
+        <span>Performance</span>
+      </a>
+    </nav>
+
+    <script src="lang.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+      // Xử lý sự kiện bấm mở/đóng accordion cho trang Performance
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const item = header.parentElement;
+          item.classList.toggle('active');
+          const icon = header.querySelector('.icon-toggle');
+          if (item.classList.contains('active')) {
+            icon.textContent = '-';
+          } else {
+            icon.textContent = '+';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

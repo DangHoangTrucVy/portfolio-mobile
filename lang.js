@@ -35,7 +35,7 @@ const translations = {
     quoteAuthor: "— Linh Phuong, Recording Artist & Vocalist",
 
     soundTitle: "Audio Director / Audio Engineer",
-    soundDesc: "Live Events. Studio Recordings. Post-production.",
+    soundDesc: "Live Events. Studio Recordings.  Audio Post Production.",
     whatTitle: "What I Do",
     liveSoundTitle: "Live Event Sound",
     liveSoundDesc:
@@ -129,7 +129,7 @@ const translations = {
     quoteAuthor: "— Linh Phương, Nghệ sĩ Thu Âm & Ca sĩ",
 
     soundTitle: "Audio Director / Audio Engineer",
-    soundDesc: "Live events. Studio recordings. Post-production.",
+    soundDesc: "Âm thanh trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
     whatTitle: "Công Việc Tôi Làm",
     liveSoundTitle: "Âm Thanh Sự Kiện",
     liveSoundDesc:

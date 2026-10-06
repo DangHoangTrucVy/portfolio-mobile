@@ -916,3 +916,112 @@ a {
     text-align: center; /* Trên mobile căn trái dễ đọc hơn */
   }
 }
+
+/* --- CSS CHO SECTION DỰ ÁN GHI ÂM RIÊNG BIỆT --- */
+.recording-project-section {
+  margin-top: 30px;
+  padding: 0 20px; /* Tạo khoảng cách 2 bên lề cho cả section */
+}
+
+.recording-project-section .section-header-center {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.recording-project-section .title-with-bar {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 4px;
+}
+
+.recording-project-section .title-with-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background-color: #ff5722; /* Màu cam chủ đạo */
+  border-radius: 2px;
+}
+
+.recording-project-section .title-with-bar span {
+  display: block;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.recording-project-section .section-header-center small {
+  display: block;
+  font-size: 10px;
+  color: #ff5722;
+  background: rgba(255, 87, 34, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-left: 14px;
+}
+
+/* Khung ảnh slideshow thụt vào 2 bên */
+.recording-project-section .project-slideshow-viewport {
+  width: 100%;
+  height: 220px; /* Chiều cao khung ảnh trên mobile */
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+  background: #222;
+  border: 1px solid #222;
+}
+
+.recording-project-section .slideshow-container {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
+
+.recording-project-section .slide-item {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.recording-project-section .project-slideshow-viewport {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+
+.recording-project-section .slideshow-container {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  /* Thêm hiệu ứng timing function cubic-bezier để chuyển động có đà tự nhiên, không bị cứng */
+  transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.recording-project-section .slide-item {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Thêm hiệu ứng zoom nhẹ bên trong ảnh cho sinh động */
+  transition: transform 4s ease-out; 
+}

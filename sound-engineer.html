@@ -797,6 +797,22 @@
       </div>
     </section>
 
+    <!-- === SECTION RIÊNG CHO DỰ ÁN GHI ÂM === -->
+    <section class="sound-work recording-project-section">
+      <div class="section-header-center">
+        <div class="title-with-bar">
+          <span id="recordingProjectTitle">RECORDING PROJECT</span>
+        </div>
+      </div>
+
+      <div class="project-slideshow-viewport">
+        <div
+          class="slideshow-container"
+          data-gallery="assets/bosung/1.png,assets/bosung/2.png,assets/bosung/3.png,assets/bosung/4.png,assets/bosung/5.png,assets/bosung/6.png,assets/bosung/7.png,assets/bosung/8.png,assets/bosung/9.png,assets/bosung/10.png"
+        ></div>
+      </div>
+    </section>
+
     <!-- LIGHTBOX MODAL -->
     <div class="lightbox" id="lightbox">
       <button class="nav-btn prev-btn" id="prevBtn">
@@ -810,9 +826,7 @@
     </div>
 
     <footer class="footer">
-      <div class="footer-col">
-       
-      </div>
+      <div class="footer-col"></div>
 
       <div class="action-buttons">
         <a href="mailto:tranhauaudio@gmail.com" class="action-btn btn-email"
@@ -1042,6 +1056,65 @@
         if (badge) {
           badge.remove();
         }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.querySelector(
+          ".recording-project-section .slideshow-container",
+        );
+        if (!container) return;
+
+        const galleryData = container.getAttribute("data-gallery");
+        if (!galleryData) return;
+
+        const images = galleryData.split(",").map((img) => img.trim());
+        if (images.length === 0) return;
+
+        if (images.length === 1) {
+          container.innerHTML = `<div class="slide-item" style="background-image: url('${images[0]}')"></div>`;
+          container.style.width = "100%";
+          return;
+        }
+
+        let currentIndex = 0;
+
+        // Khởi tạo 2 ảnh đầu tiên
+        container.innerHTML = `
+    <div class="slide-item" style="background-image: url('${images[0]}')"></div>
+    <div class="slide-item" style="background-image: url('${images[1]}')"></div>
+  `;
+
+        function slideNext() {
+          // Kích hoạt trượt sang trái
+          container.style.transform = "translateX(-50%)";
+
+          setTimeout(() => {
+            // Tắt tạm thời transition để reset vị trí về 0 ngay lập tức mà mắt thường không thấy
+            container.style.transition = "none";
+            container.style.transform = "translateX(0)";
+
+            // Chuyển sang ảnh tiếp theo trong mảng
+            currentIndex = (currentIndex + 1) % images.length;
+            const nextIndex = (currentIndex + 1) % images.length;
+
+            // Cập nhật lại nội dung HTML cho 2 slide
+            container.innerHTML = `
+        <div class="slide-item" style="background-image: url('${images[currentIndex]}')"></div>
+        <div class="slide-item" style="background-image: url('${images[nextIndex]}')"></div>
+      `;
+
+            // Bật lại hiệu ứng trượt mượt mà cho lần chạy tiếp theo
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                container.style.transition =
+                  "transform 0.9s cubic-bezier(0.25, 1, 0.5, 1)";
+              });
+            });
+          }, 900); // Thời gian này phải khớp với thời gian transition trong CSS (0.9s = 900ms)
+        }
+
+        // Cứ sau 3.5 giây sẽ chạy slide 1 lần
+        setInterval(slideNext, 3500);
       });
     </script>
   </body>

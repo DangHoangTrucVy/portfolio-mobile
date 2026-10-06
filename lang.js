@@ -35,7 +35,7 @@ const translations = {
     quoteAuthor: "— Linh Phuong, Recording Artist & Vocalist",
 
     soundTitle: "Audio Director / Audio Engineer",
-    soundDesc: "Live Sound. Studio Recording. Audio Post Production",
+    soundDesc: "Live Events. Studio Recordings. Post-production.",
     whatTitle: "What I Do",
     liveSoundTitle: "Live Event Sound",
     liveSoundDesc:
@@ -75,6 +75,9 @@ const translations = {
     filmDesc:
       "Emotional soundtracks and cues for short films, ads, and campaigns.",
     collaborationsTitle: "Featured Collaborations",
+
+    recordingProjectTitle: "RECORDING PROJECT",
+    recordingProjectSubtitle: "Record",
 
     footerNavigation: "Navigation",
     footerServices: "Services",
@@ -125,8 +128,8 @@ const translations = {
       "Hậu nghe được những điều mà nhiều người thường bỏ lỡ. Anh không chỉ xử lý âm thanh — anh còn định hình cảm xúc của cả không gian khi âm nhạc vang lên.",
     quoteAuthor: "— Linh Phương, Nghệ sĩ Thu Âm & Ca sĩ",
 
-    soundTitle: "Kỹ Sư Âm Thanh",
-    soundDesc: "Âm thanh trực tiếp. Thu âm phòng thu. Hậu kỳ âm thanh.",
+    soundTitle: "Audio Director / Audio Engineer",
+    soundDesc: "Live events. Studio recordings. Post-production.",
     whatTitle: "Công Việc Tôi Làm",
     liveSoundTitle: "Âm Thanh Sự Kiện",
     liveSoundDesc:
@@ -169,6 +172,9 @@ const translations = {
     filmDesc:
       "Soundtrack và cue giàu cảm xúc cho phim ngắn, quảng cáo và chiến dịch truyền thông.",
     collaborationsTitle: "Dự Án Hợp Tác Nổi Bật",
+
+    recordingProjectTitle: "DỰ ÁN GHI ÂM",
+    recordingProjectSubtitle: "Ghi Âm",
 
     footerNavigation: "Điều Hướng",
     footerServices: "Dịch Vụ",
@@ -224,6 +230,10 @@ function setLanguage(lang) {
   setText("titleLiveShows", t.liveShowsTitle);
   setText("titleJudging", t.judgingTitle);
   setText("roleJudge", t.judgeRole);
+
+  // Cập nhật Dự án ghi âm
+  setText("recordingProjectTitle", t.recordingProjectTitle);
+  setText("recordingProjectSubtitle", t.recordingProjectSubtitle);
 
   // Cập nhật Footer
   setText("footerTitle", t.footerTitle);
